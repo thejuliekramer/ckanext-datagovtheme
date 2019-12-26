@@ -18,9 +18,9 @@ jobs:
       - run:
           name: test
           command: bin/travis-run.sh
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build_ckan_28
+

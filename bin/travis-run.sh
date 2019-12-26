@@ -9,3 +9,4 @@ echo "pip freeze"
 pip freeze
 
 nosetests --ckan --with-pylons=test.ini ckanext/datagovtheme/tests
+
