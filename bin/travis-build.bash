@@ -98,11 +98,6 @@ echo "-----------------------------------------------------------------"
 echo "Installing ckanext-datagovtheme and its requirements..."
 cd ckanext-datagovtheme
 
-if [ $CKANVERSION == '2.3' ]
-then
-	git checkout rename_bootstrap_variables
-fi
-
 python setup.py develop
 
 echo "travis-build.bash is done."
