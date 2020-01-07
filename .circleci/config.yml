@@ -41,5 +41,5 @@ workflows:
   build_and_test:
     jobs:
       - build_ckan_23
-      # - build_ckan_28
+      - build_ckan_28
 
