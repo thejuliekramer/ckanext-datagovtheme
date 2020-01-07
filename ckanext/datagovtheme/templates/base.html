@@ -8,7 +8,8 @@
 
 {% block styles %}
   {{ super() }}
-  {% if is_bootstrap2 %} 
+  {% if True %} 
+  {{ is_bootstrap2 }}
   {% resource 'datagovtheme/styles/datagovtheme_bootstrap2.css' %}
   {% else %}
   {% resource 'datagovtheme/styles/datagovtheme.css' %}
