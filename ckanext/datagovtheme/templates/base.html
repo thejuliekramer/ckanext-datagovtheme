@@ -1,5 +1,4 @@
 {% ckan_extends %}
-{% set is_bootstrap2 = h.is_bootstrap2() %}
 
 {% block scripts %}
   {{ super() }}
@@ -7,5 +6,10 @@
 {% endblock %}
 
 {% block styles %}
-  {% resource 'datagovtheme/styles/datagovtheme_bootstrap2.css' %}
+  {{ super() }}
+  {% if h.ckan_version_28() %} 
+  {% resource 'datagovtheme/styles/datagovtheme_28.css' %}
+  {% else %}
+  {% resource 'datagovtheme/styles/datagovtheme.css' %}
+  {% endif %}
 {% endblock %}
