@@ -34,7 +34,7 @@ class TestDatagovthemeServed(FunctionalTestBase):
         assert_true(p.plugin_loaded('datagovtheme'))
         assert_true(p.plugin_loaded('geodatagov'))
 
-    @mock.patch("is_bootstrap2", mock.MagicMock(return_value=False))
+    @mock.patch(is_bootstrap2, mock.MagicMock(return_value=False))
     def test_datagovtheme_css_is_bootstrap2(self):
         app = self._get_test_app()
 
@@ -43,7 +43,7 @@ class TestDatagovthemeServed(FunctionalTestBase):
             assert_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
             assert_not_in('datagovtheme.css', index_response.unicode_body) 
     
-    @mock.patch("is_bootstrap2", mock.MagicMock(return_value=False))
+    @mock.patch(is_bootstrap2, mock.MagicMock(return_value=False))
     def test_datagovtheme_css(self):
         app = self._get_test_app()
 
