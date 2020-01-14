@@ -34,8 +34,9 @@ class TestDatagovthemeServed(FunctionalTestBase):
         assert_true(p.plugin_loaded('datagovtheme'))
         assert_true(p.plugin_loaded('geodatagov'))
 
-    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2', mock.MagicMock(return_value=False))
-    def test_datagovtheme_css_is_bootstrap2(self):
+    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
+    def test_datagovtheme_css_is_bootstrap2(self, mock):
+        mock.return_value = True
         app = self._get_test_app()
 
         index_response = app.get('/dataset')
@@ -43,8 +44,9 @@ class TestDatagovthemeServed(FunctionalTestBase):
             assert_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
             assert_not_in('datagovtheme.css', index_response.unicode_body) 
     
-    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2', mock.MagicMock(return_value=False))
-    def test_datagovtheme_css(self):
+    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
+    def test_datagovtheme_css(self, mock):
+        mock.return_value = False
         app = self._get_test_app()
 
         index_response = app.get('/dataset')
