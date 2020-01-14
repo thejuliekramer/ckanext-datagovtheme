@@ -8,7 +8,7 @@ from nose.tools import assert_in, assert_true, assert_not_in, assert_false
 
 from ckan import plugins as p
 import mock
-import ckanext.datagovtheme.helpers.is_bootstrap2
+import ckanext
 
 
 class TestDatagovthemeServed(FunctionalTestBase):
