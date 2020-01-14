@@ -37,6 +37,7 @@ class TestDatagovthemeServed(FunctionalTestBase):
     @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
     def test_datagovtheme_css_is_bootstrap2(self, mock):
         mock.return_value = True
+        assert ckanext.datagovtheme.helpers.is_bootstrap2() == True
         app = self._get_test_app()
 
         index_response = app.get('/dataset')
@@ -47,6 +48,7 @@ class TestDatagovthemeServed(FunctionalTestBase):
     @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
     def test_datagovtheme_css(self, mock):
         mock.return_value = False
+        assert ckanext.datagovtheme.helpers.is_bootstrap2() == False
         app = self._get_test_app()
 
         index_response = app.get('/dataset')
