@@ -34,17 +34,31 @@ class TestDatagovthemeServed(FunctionalTestBase):
         assert_true(p.plugin_loaded('datagovtheme'))
         assert_true(p.plugin_loaded('geodatagov'))
 
-    def test_datagovtheme_css_file(self):
+    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
+    def test_datagovtheme_css_file(self, mock):
+        mock.return_value = False
+        assert(ckanext.datagovtheme.helpers.is_bootstrap2() == False)
+
         app = self._get_test_app()
 
         index_response = app.get('/dataset')
+
+        assert_in('datagovtheme.css', index_response.unicode_body)
+        assert_not_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
+    
+    @mock.patch('ckanext.datagovtheme.helpers.is_bootstrap2')
+    def test_datagovtheme_bootstrap2_css_file(self, mock):
+        mock.return_value = True
+        assert(ckanext.datagovtheme.helpers.is_bootstrap2() == True)
         
-        if ckanext.datagovtheme.helpers.is_bootstrap2():
-            assert_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
-            assert_not_in('datagovtheme.css', index_response.unicode_body) 
-        else:
-            assert_in('datagovtheme.css', index_response.unicode_body)
-            assert_not_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
+        app = self._get_test_app()
+
+        index_response = app.get('/dataset')
+
+        assert_in('datagovtheme_bootstrap2.css', index_response.unicode_body)
+        assert_not_in('datagovtheme.css', index_response.unicode_body) 
+
+
     
     def test_datagovtheme_html_loads(self):
         app = self._get_test_app()
